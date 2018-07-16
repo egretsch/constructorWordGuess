@@ -1,0 +1,23 @@
+{
+  "name": "constructorwordguess",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egretsch/constructorWordGuess.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egretsch/constructorWordGuess/issues"
+  },
+  "homepage": "https://github.com/egretsch/constructorWordGuess#readme",
+  "dependencies": {
+    "inquirer": "^6.0.0",
+    "request": "^2.87.0"
+  }
+}
