@@ -1,3 +1,8 @@
-const word = require("./word.js");
-const letter = require("./letter.js");
-const fs = require("fs");
+const Word = require('./Word.js');
+const inquirer = require('inquirer');
+
+let myWord = new Word("wolf");
+myWord.createLetter();
+myWord.displayWord();
+myWord.checkUserGuess("w");
+myWord.checkUserGuess("z");
