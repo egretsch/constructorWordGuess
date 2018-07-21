@@ -4,45 +4,59 @@ function Word(wordString) {
     this.word = wordString;
     this.letterArray = [];
     this.wordArray = this.word.split("");
-    // this.displayArray = [];
+    this.chanes = 10;
 
+    // terns letters of the word to a string of and hied the letter
     this.createLetter = function () {
         for (let i = 0; i < this.wordArray.length; i++) {
             this.letterArray.push(new Letter(this.wordArray[i]));
 
         }
     }
+
+    // displays a string representing the word.
     this.displayWord = function () {
         let displayArray = [];
         for (let i = 0; i < this.wordArray.length; i++) {
-            // console.log(this.letterArray[i])
-            displayArray.push(this.letterArray[i].display())
+            displayArray.push(this.letterArray[i].display());
 
         }
         console.log(displayArray.join(" "));
     }
 
-    this.checkUserGuess = function(userGuess){
+    // check to see if letter is in word then displays them if leters correct
+    this.checkUserGuess = function (userGuess) {
+        
         if (this.wordArray.includes(userGuess)) {
-            console.log(userGuess + " is in the word");
-            // set the guessed boolean in the letter object that corresponds to the userGuessed letter to true
-            // call our displayWord
-            for (let i = 0; i < wordArray.length; i++) {
+            console.log(userGuess + " is in the word" + " Trys left: " + this.chanes);
+            for (let i = 0; i < this.wordArray.length; i++) {
                 if (userGuess === this.letterArray[i].character) {
                     this.letterArray[i].guessed = true;
                 }
             }
-            this.displayWord();
-            
         } else {
-            console.log(userGuess + " isn't in our word")
+            this.chanes--;
+            console.log(userGuess + " isn't in our word" + " Trys left: " + this.chanes);
         }
+        this.displayWord();
+    }
+    // check loss on index
 
-    
+    this.checkWin = function(){
+        let letterCount = 0;
+        for (let i = 0; i < this.wordArray.length; i++) {
+            if (this.letterArray[i].guessed) {
+                letterCount++;
+            }
+        }
+        if (letterCount === this.wordArray.length) {
+            return true;
+            
+        }
+        
+        return false;
+        
+    }
 }
-
-    
-}
-
 
 module.exports = Word;
