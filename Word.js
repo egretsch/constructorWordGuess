@@ -26,9 +26,9 @@ function Word(wordString) {
 
     // check to see if letter is in word then displays them if leters correct
     this.checkUserGuess = function (userGuess) {
-        
+
         if (this.wordArray.includes(userGuess)) {
-            console.log(userGuess + " is in the word" + " Trys left: " + this.chanes);
+            console.log(userGuess + " is in the word" + "\nTrys left: " + this.chanes);
             for (let i = 0; i < this.wordArray.length; i++) {
                 if (userGuess === this.letterArray[i].character) {
                     this.letterArray[i].guessed = true;
@@ -36,13 +36,13 @@ function Word(wordString) {
             }
         } else {
             this.chanes--;
-            console.log(userGuess + " isn't in our word" + " Trys left: " + this.chanes);
+            console.log(userGuess + " isn't in our word" + "\nTrys left: " + this.chanes);
         }
         this.displayWord();
     }
     // check loss on index
 
-    this.checkWin = function(){
+    this.checkWin = function () {
         let letterCount = 0;
         for (let i = 0; i < this.wordArray.length; i++) {
             if (this.letterArray[i].guessed) {
@@ -51,11 +51,15 @@ function Word(wordString) {
         }
         if (letterCount === this.wordArray.length) {
             return true;
-            
+
         }
-        
+
+        if(this.chanes < 1){
+            return true;
+        }
+
         return false;
-        
+
     }
 }
 

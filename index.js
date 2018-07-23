@@ -6,7 +6,7 @@ let myWord;
 // salects random Word for the user to guess
 function randomWord() {
     const wordStringArray = ["batman", "goku", "gilbert", "dragonball", "vagita",
-    "iorn man", "alucard", "dracula", "naruto", "onepunch man", "superman",];
+        "iorn man", "alucard", "dracula", "naruto", "onepunch man", "superman",];
     const indexWord = Math.floor(Math.random() * wordStringArray.length);
     // console.log(indexWord);
     return wordStringArray[indexWord];
@@ -14,14 +14,14 @@ function randomWord() {
 }
 
 function wordGuess() {
-    
-    
-    
+
+
+
     inquirer.prompt([
         {
             name: 'guess',
-            message: 'What letter would you like to guess?' +
-            "\nGuessed letters: " + chosenLetters
+            message: 'What letter would you like to guess?'
+                + "\nGuessed letters: " + chosenLetters
         },
     ]).then(answers => {
         let guess = answers.guess.toLowerCase();
@@ -29,29 +29,48 @@ function wordGuess() {
             process.exit();
         }
         chosenLetters.push(guess);
-        myWord.createLetter();
-        myWord.displayWord();
-        if (!myWord.checkWin()) {
-            myWord.checkUserGuess(guess);
+        // myWord.createLetter();
+        myWord.checkUserGuess(guess);
+        // myWord.displayWord();
+        if (!myWord.checkWin() && myWord.chanes > 0) {
+            console.log("-----------------------------------------------------------")
+
+           
+
+            return wordGuess();
+            // myWord.checkUserGuess(guess);
+            
         }
-        if (myWord.checkUserGuess(guess) === 0) {
-            playAgain();
+        else if (myWord.checkWin()) {
+           
+            return playAgain();
         }
-        else {
-            wordGuess();
+        else if (myWord.chanes < 0) {
+            return playAgain()
+        } else {
+            // could do something here 
         }
+
+        // if (myWord.checkUserGuess(guess) === 0) {
+        //     playAgain();
+        // }
+        // else {
+        //     wordGuess();
+        // }
     });
     // return wordGuess();
 };
 
 function game() {
     myWord = new Word(randomWord());
-    wordGuess();
+
     myWord.createLetter();
     myWord.displayWord();
+    wordGuess();
 };
 
 const playAgain = () => {
+    chosenLetters = [];
     inquirer.prompt([
         {
             type: 'list',
